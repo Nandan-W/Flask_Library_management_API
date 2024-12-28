@@ -3,7 +3,7 @@ from app.models import User
 from app import db
 from flask_jwt_extended import create_access_token
 
-bp = Blueprint('auth' , __name__)
+bp = Blueprint('users' , __name__)
 
 @bp.route('/api/users' , methods ['GET'])
 def get_users():
