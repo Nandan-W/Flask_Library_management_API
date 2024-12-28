@@ -1,7 +1,7 @@
 from flask import Blueprint, request, jsonify
 from app.models import User
 from app import db
-from flask_jwt_extended import create_access_token
+from flask_jwt_extended import jwt_required
 
 bp = Blueprint('users' , __name__)
 
@@ -22,7 +22,7 @@ def add_user():
     )
 
     db.session.add(new_user)
-    db.session.commit(new_user)
+    db.session.commit()
 
     return jsonify({'message': 'User created successfully'}), 201
 

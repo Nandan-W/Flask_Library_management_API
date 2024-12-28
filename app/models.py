@@ -10,6 +10,17 @@ class Book(db.Model):
     available = db.Column(db.Integer, default=1)
     published_date = db.Column(db.String(10), nullable=False)
 
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'author': self.author,
+            'isbn': self.isbn,
+            'quantity': self.quantity,
+            'available': self.available,
+            'published_date': self.published_date
+        }
+
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)

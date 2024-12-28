@@ -22,7 +22,7 @@ def get_books():
     books = pagination.items
 
     return jsonify({
-        'books': [books.to_dict()],
+        'books': [book.to_dict() for book in books],
         'total': pagination.total,
         'pages': pagination.pages,
         'current_page': page
@@ -55,7 +55,7 @@ def create_book():
 @bp.route('/api/books/<int:id>', methods=['PUT'])
 @jwt_required()
 def update_book(id):
-    data = reques.tget_json()
+    data = request.get_json()
     book = Book.query.get(id)
 
     if not book:
