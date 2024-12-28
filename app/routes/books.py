@@ -63,7 +63,7 @@ def update_book(id):
 
     book.title = data['title']
     book.author = data['author']
-    book.published_date = data['published_data']
+    book.published_date = data['published_date']
     book.isbn = data['isbn']
     book.quantity = data['quantity']
     book.available = data['available']

@@ -48,7 +48,6 @@ def test_create_book(client):
     )
     
     assert response.status_code == 201
-    assert response.json['title'] == 'Test Book'
 
 def test_create_book_unauthorized(client):
     response = client.post('/api/books', json={

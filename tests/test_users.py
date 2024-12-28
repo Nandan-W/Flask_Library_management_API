@@ -26,10 +26,25 @@ def test_get_users(client):
     assert response.status_code == 200
     assert response.get_json() == [{'id': 1, 'username': 'Test User'}]
 
+# added authorization here as it is necessary to add 
+# new users without registration by admins
 def test_add_user(client):
+    client.post('/api/auth/register', json={
+        'username': 'admin',
+        'password': 'admin'
+    })
+
+    auth_response = client.post('/api/auth/login', json={
+        'username': 'admin',
+        'password': 'admin'
+    })
+
+    token = auth_response.json['access_token']
+
     response = client.post('/api/users', json={
         'username': 'Test User',
         'password': 'password'
-    })
+    }, headers={'Authorization': f'Bearer {token}'})
+
     assert response.status_code == 201
     assert response.get_json()['username'] == 'Test User'
