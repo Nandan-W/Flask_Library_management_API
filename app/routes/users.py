@@ -5,7 +5,7 @@ from flask_jwt_extended import create_access_token
 
 bp = Blueprint('users' , __name__)
 
-@bp.route('/api/users' , methods ['GET'])
+@bp.route('/api/users' , methods=['GET'])
 def get_users():
     users = User.query.all()
     return jsonify([user.to_dict()  for user in users ]) , 200
